@@ -1,0 +1,54 @@
+extend layout
+
+block content
+  if query
+    a(href="/") &larr; Popular movies
+    h1
+      | Movie search
+
+    if db.total_results > 1
+      em.tagline
+        | Found #{db.total_results} movies
+
+  else
+    h1 Popular movies
+
+    em.tagline
+      | #{db.total_results} movies in database
+
+
+
+
+  if db.total_results < 1
+    h2 No movies match your search query
+    a(href="/") Return to list of a popular movies
+  else
+    .pagination
+      if page > 1
+        a(href="/" + (parseInt(page) - 1) + '?query=' + query) &larr; Previous
+
+      if db.total_pages > page
+        a.next(href="/" + (parseInt(page) + 1) + '?query=' + query) Next &rarr;
+
+    ul.movies
+      each movie in db.results
+        li
+          a(href="/movies/" + movie.id)
+            if movie.backdrop_path
+              img(src="https://image.tmdb.org/t/p/w500/" + movie.backdrop_path)
+            else
+              .missing-backdrop
+
+            .meta
+              h2= movie.title
+              strong.rating= movie.vote_average
+              span.date= movie.release_date 
+
+
+
+    .pagination
+      if page > 1
+        a(href="/" + (parseInt(page) - 1) + '?query=' + query) &larr; Previous
+
+      if db.total_pages > page
+        a.next(href="/" + (parseInt(page) + 1) + '?query=' + query) Next &rarr;

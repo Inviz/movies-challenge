@@ -1,0 +1,40 @@
+extend layout
+
+block content
+  a(href="/")
+
+    | &larr; Popular movies
+  h1
+    a(href=movie.homepage)
+      = movie.title
+  ul.genres.comma-separated
+    each genre in movie.genres
+      li= genre.name
+
+  dl.information
+    if movie.release_date
+      dt Release date
+      dd= movie.release_date
+
+    if movie.runtime
+      dt Runtime
+      dd
+        = movie.runtime
+        | min
+
+    if movie.spoken_languages && movie.spoken_languages[0]
+      dt Language
+      dd
+        = movie.spoken_languages[0].name
+
+    dt Countries
+    dd
+
+      ul.comma-separated
+        each country in movie.production_countries
+          li= country.name
+
+  p= movie.overview
+
+  img(src="https://image.tmdb.org/t/p/w500/" + movie.poster_path)
+
