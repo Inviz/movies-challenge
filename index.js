@@ -30,7 +30,7 @@ app.get('/:page?', function(req, res){
 app.get('/movies/:movie', function(req, res){
   request('https://api.themoviedb.org/3/movie/' + req.params.movie + '?api_key=' + config.key, { json: true }, (err, result, body) => {
     if (err) { return console.log(err); }
-  	res.render('show', { title: 'Movie details', movie: body })
+  	res.render('show', { title: 'Movie: ' + body.title, movie: body })
   });
 });
 
