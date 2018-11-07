@@ -2,6 +2,7 @@
 
 This is my submission for test challenge to implement basic crud UI that fetches data from themoviedb in under one hour.
 
+I recorded a video doing this challenge and put it on youtube: https://youtu.be/k097aLuhGgw
 
 
 ## Why express.js?
