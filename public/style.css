@@ -75,8 +75,7 @@ dl.information dd {
 
 .movies li img {
 	width: 500px;
-	height: 281px;
-	max-width: 100%;
+	min-height: 281px;
 }
 
 .movies h2 {
